@@ -55,10 +55,6 @@ Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
-
 
 //life class to display lifes.
 var Life = function(x) {
@@ -72,6 +68,8 @@ Life.prototype.render = function() {
 
 }
 
+//Instantiating lifes objects
+//placing all lifes objects in allLifes array
 var lifes = new Life();
 var allLifes = [];
 var lives = 3;
@@ -79,24 +77,29 @@ for (var i = 0; i < lives; i++) {
   var x = i * 101;
   var lifes = new Life(x);
   allLifes.push(lifes);
-}1
+}
 
+// Now instantiate your objects.
+// Place all enemy objects in an array called allEnemies
 var allEnemies = [];
 var enemiesNum = 3;
 var enemies = [60, 145, 230];
 var speeds = [150, 180, 130];
-var pos = [100, 0, 50]
+var pos = [100, 0, 50];
 
 for (var i = 0; i < enemiesNum; i++) {
   var obj = new Enemy(pos[i], enemies[i], speeds[i]);
   allEnemies.push(obj);
 }
+// Place the player object in a variable called player
+var player = new Player(204, 410);
 
 // checkCollisions() function
 var checkCollisions = function() {
   for (var i in allEnemies) {
     var enemyx = allEnemies[i].x;
     var enemyy = allEnemies[i].y;
+    //checking player colliding with enemy or not if collides player has to come to initial position and lost one life.
     if (player.x > enemyx - 50 && player.x < (enemyx + 70) && player.y > enemyy && player.y <= (enemyy + 70)) {
       player.x = 205;
       player.y = 410;
@@ -107,14 +110,11 @@ var checkCollisions = function() {
 
 var count = 0;
 
-
-
-
-//player selection function
+//player selection function to select the player character
 var playerSelect = function() {
 
-swal({
-     title: "Select the player character",
+  swal({
+      title: "Select the player character",
       buttons: {
         boy: "BOY",
         catgirl: "CAT-GIRL",
@@ -134,17 +134,17 @@ swal({
           break;
         case "pinkgirl":
           player.sprite = 'images/char-pink-girl.png';
-        break;
+          break;
         case "horngirl":
           player.sprite = 'images/char-horn-girl.png';
-         break;
+          break;
         default:
-        player.sprite = 'images/char-boy.png';
+          player.sprite = 'images/char-boy.png';
       }
     });
 };
 
-var player = new Player(204, 410);
+
 // This listens for key presses and sends the keys to your
 player.handleInput = function(a) {
   if (a == 'left' && this.x > 100) {
