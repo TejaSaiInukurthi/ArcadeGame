@@ -82,8 +82,8 @@ var Engine = (function(global) {
     updateEntities(dt);
     checkCollisions();
     if (allLifes.length == 0) {
-      //calling game over function.
       gameOver();
+      exit();
     }
     reset();
   }
@@ -144,7 +144,6 @@ var Engine = (function(global) {
       }
     }
 
-   // Displaying scores on the canvas using `ctx.fillText()`.
     ctx.font = "italic  bold 40pt arial";
     ctx.fillStyle = "white";
     ctx.fillText("score:", canvas.width - 250, 100);
@@ -155,26 +154,25 @@ var Engine = (function(global) {
 
   }
 
-// Game over function to display modal;
   function gameOver() {
     swal({
-      title: "GAME OVER!!!",
-      text: "SCORE:" + count,
-      buttons: {
-        play: "Play again",
-      }
-    }).then(function(value) {
-      switch (value) {
-        //this function reloads the page when you click "Play Again" button in the sweet alert
-        case "play":
-          location.reload();
-          break;
-        default:
-          location.reload();
-      }
-    });
-  }
+        title: "GAME OVER!!!",
+        text:"your score is: "+ count,
+        buttons: {
+          play: "Play Again",
+        }
+      })
+      .then((value) => {
+        switch (value) {
 
+          case "boy":
+            location.reload();
+            break;
+          default:
+          location.reload();
+        }
+      });
+  }
 
   /* This function is called by the render function and is called on each game
    * tick. Its purpose is to then call the render functions you have defined
@@ -194,6 +192,7 @@ var Engine = (function(global) {
 
     player.render();
   }
+
 
   /* This function does nothing but it could have been a good place to
    * handle game reset states - maybe a new game menu or a game over screen
@@ -216,6 +215,7 @@ var Engine = (function(global) {
     'images/char-cat-girl.png',
     'images/char-horn-girl.png',
     'images/char-pink-girl.png',
+    'images/char-princess-girl.png',
     'images/Heart.png'
   ]);
   Resources.onReady(init);
