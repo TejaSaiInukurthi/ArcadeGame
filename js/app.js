@@ -1,3 +1,4 @@
+"use strict";
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
   // Variables applied to each of our instances go here,
@@ -41,10 +42,10 @@ var Player = function(x, y) {
 
 // update method for player
 Player.prototype.update = function(dt) {
-  if (player.y < 0) {
+  if (this.y < 0) {
     count++;
-    player.x = 205;
-    player.y = 410;
+    this.x = 205;
+    this.y = 410;
   }
 
 };
@@ -78,7 +79,7 @@ for (var i = 0; i < lives; i++) {
   var x = i * 101;
   var lifes = new Life(x);
   allLifes.push(lifes);
-}
+}1
 
 var allEnemies = [];
 var enemiesNum = 3;
@@ -86,14 +87,14 @@ var enemies = [60, 145, 230];
 var speeds = [150, 180, 130];
 var pos = [100, 0, 50]
 
-for (i = 0; i < enemiesNum; i++) {
+for (var i = 0; i < enemiesNum; i++) {
   var obj = new Enemy(pos[i], enemies[i], speeds[i]);
   allEnemies.push(obj);
 }
 
 // checkCollisions() function
 var checkCollisions = function() {
-  for (i in allEnemies) {
+  for (var i in allEnemies) {
     var enemyx = allEnemies[i].x;
     var enemyy = allEnemies[i].y;
     if (player.x > enemyx - 50 && player.x < (enemyx + 70) && player.y > enemyy && player.y <= (enemyy + 70)) {

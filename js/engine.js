@@ -83,8 +83,6 @@ var Engine = (function(global) {
     checkCollisions();
     if (allLifes.length == 0) {
       gameOver();
-      console.log(allLifes.length);
-      exit();
     }
     reset();
   }
