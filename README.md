@@ -52,4 +52,5 @@ speed using a for loop and pushed them into allEnemies array. this displayed a g
 1. After completing this project I got better understanding on Object Oriented JavaScript and ES6 functionalities.
 
 Here's the link to the game (https://tejasaiinukurthi.github.io/ArcadeGame/)
+
 Note: The game only works with keyboard only its better play it in pc. 
